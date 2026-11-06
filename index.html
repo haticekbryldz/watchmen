@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<link rel="icon" href="data:,"/>
+<title>Watchmen Micro-Learning — Who Watches the Watchmen?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0e0f;--surface:#17171a;--surface2:#1f1f23;--text:#f5f1e6;--muted:#b8b3a6;--line:#2e2e33;--yellow:#ffd500;--gold:#ffd500;--red:#c8102e;--blue:#3aa0ff;--radius:18px}
+@media(prefers-color-scheme:light){:root{--bg:#faf7ec;--surface:#fff;--surface2:#fff8d6;--text:#141414;--muted:#5a5548;--line:#e6ddc0;--gold:#7a5c00;--blue:#0b5cad}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:var(--blue)} .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2{font-family:"Bebas Neue",sans-serif;letter-spacing:.04em;line-height:.95;font-weight:400}
+h1{font-size:clamp(42px,11vw,110px);margin:0;overflow-wrap:break-word} h2{font-size:clamp(32px,6vw,58px);margin:0 0 8px} h3{margin:0 0 6px}
+.serif{font-family:"Libre Baskerville",serif}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;gap:18px;align-items:center;overflow-x:auto;padding:12px 0;font-size:14px;font-weight:600;white-space:nowrap}.nav a{color:var(--text);text-decoration:none}.nav a:hover{color:var(--yellow)}
+.nav .brand{display:flex;gap:10px;align-items:center;margin-right:8px}
+.smiley{width:36px;height:36px;border-radius:50%;background:var(--yellow);position:relative;flex:none}.smiley:before,.smiley:after{content:"";position:absolute;width:5px;height:9px;background:#111;border-radius:50%;top:9px}.smiley:before{left:9px}.smiley:after{right:9px}.smiley i{position:absolute;left:8px;right:8px;bottom:7px;height:10px;border-bottom:3px solid #111;border-radius:50%}.smiley b{position:absolute;width:9px;height:22px;background:var(--red);border-radius:50%;transform:rotate(18deg);left:2px;top:-2px}
+.hero{padding:44px 0 28px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;align-items:center}.hero>*{min-width:0}
+@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.kicker{color:var(--gold);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:620px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.pill{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:600}
+.btn{display:inline-block;background:var(--yellow);color:#111;border:0;border-radius:999px;padding:13px 20px;font-weight:800;text-decoration:none;cursor:pointer}.btn.secondary{background:var(--surface);color:var(--text);border:1px solid var(--line)}
+.clockCard{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px;text-align:center}
+.clock{width:min(210px,70vw);height:min(210px,70vw);margin:10px auto;border-radius:50%;border:8px solid var(--text);position:relative;background:radial-gradient(circle at 50% 50%, var(--red) 0 7px, transparent 8px),conic-gradient(from -90deg, var(--red) 0deg 18deg, var(--surface2) 18deg 360deg)}
+.hand{position:absolute;left:50%;bottom:50%;width:5px;background:var(--text);transform-origin:bottom;border-radius:99px}.hour{height:58px}.min{height:84px;background:var(--red)}
+.dot{position:absolute;inset:0;display:grid;place-items:center;font-weight:800}
+section{padding:34px 0;border-top:1px solid var(--line)} .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}.card p{color:var(--muted);margin:6px 0}
+.fact{font-size:28px;font-family:"Bebas Neue";letter-spacing:.03em}
+.progress{height:10px;background:var(--surface2);border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:var(--yellow);width:0;transition:.4s}
+.chapters{display:grid;gap:10px}.chapter{border:1px solid var(--line);background:var(--surface);border-radius:14px;overflow:hidden}.chapter button.head{width:100%;text-align:left;background:none;border:0;color:var(--text);padding:16px;display:flex;gap:14px;cursor:pointer;align-items:center}.num{width:42px;height:42px;border-radius:50%;background:var(--yellow);color:#111;display:grid;place-items:center;font-weight:900;flex:none}.chapter .body{display:none;padding:0 16px 16px 72px;color:var(--muted)} .chapter.open .body{display:block}
+.charGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}@media(max-width:700px){.charGrid{grid-template-columns:1fr}}
+.tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tab{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;font-weight:700}.tab.active{background:var(--yellow);color:#111}
+.quizQ{margin:18px 0}.opt{display:block;width:100%;text-align:left;margin:7px 0;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}.opt.correct{border-color:#2ecc71;background:#14301f;color:#d6ffe2}.opt.wrong{border-color:var(--red);background:#3a1218}
+.panelGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:420px}.panel{aspect-ratio:1;background:var(--surface2);border:2px solid var(--text);display:grid;place-items:center;font-size:22px;cursor:pointer;text-align:center;padding:8px}.panel:hover{background:var(--yellow);color:#111}
+.timeline{border-left:3px solid var(--yellow);margin-left:8px;padding-left:22px;display:grid;gap:18px}.tl b{color:var(--gold)}
+iframe.video{width:100%;aspect-ratio:16/9;border:0;border-radius:16px;background:#000}
+.ink{height:180px;background:#fff;border-radius:14px;display:grid;place-items:center;overflow:hidden}.ink svg{width:170px}
+.spoiler{filter:blur(7px);transition:.3s}.spoiler.revealed{filter:none}
+.matchRow{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:10px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--text)}.chip.sel{outline:3px solid var(--yellow)}.chip.done{opacity:.45;text-decoration:line-through}
+footer{padding:28px 0 50px;color:var(--muted);font-size:14px} .sources{font-size:14px;color:var(--muted)} .sources li{margin:6px 0}
+.notice{background:#2a2300;border:1px solid var(--yellow);color:#ffe970;border-radius:12px;padding:12px 14px;font-size:14px}@media(prefers-color-scheme:light){.notice{background:#fff8d6;color:#5c4a00}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="brand"><div class="smiley"><i></i><b></b></div><strong>WATCHMEN • Micro-Learning</strong></div><a href="#basics">Basics</a><a href="#craft">Craft</a><a href="#world">World</a><a href="#characters">Characters</a><a href="#story">Full Story</a><a href="#chapters">12 Chapters</a><a href="#watch">Watch</a><a href="#play">Play & Quiz</a><a href="#sources">Sources</a></div></header>
+
+<main class="wrap">
+<div class="hero">
+<div>
+<div class="kicker">5 minutes at a time • Spoiler-aware • Fully sourced</div>
+<h1>WHO WATCHES<br>THE WATCHMEN?</h1>
+<p class="lead">Learn the most influential graphic novel ever made — Alan Moore & Dave Gibbons' <em>Watchmen</em> (1986–87) — in bite-size lessons: the basics, how it's built, who these flawed heroes are, what happens in all 12 chapters, and why it still matters.</p>
+<div class="pillrow"><span class="pill">✦ 12 issues • DC Comics</span><span class="pill">Writer: Alan Moore</span><span class="pill">Art: Dave Gibbons</span><span class="pill">Colour: John Higgins</span><span class="pill">Hugo Award winner</span></div>
+<a class="btn" href="#basics">Start Lesson 1 ↓</a> <a class="btn secondary" href="#play">Jump to the quiz</a>
+<p style="color:var(--muted);font-size:14px;margin-top:14px">Your progress lives only in this tab while you learn — tick chapters off as you go.</p>
+<div style="margin-top:16px"><div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700"><span>COURSE PROGRESS</span><span id="progLabel">0 / 12 chapters</span></div><div class="progress"><i id="progBar"></i></div></div>
+</div>
+<div class="clockCard">
+<div class="kicker">Interactive • The Doomsday Clock</div>
+<h3 style="font-size:22px">How close to midnight are we?</h3>
+<div class="clock" aria-label="Doomsday clock illustration"><div class="hand hour" id="hourHand"></div><div class="hand min" id="minHand"></div><div class="dot">☢</div></div>
+<input type="range" min="0" max="11" value="7" id="clockRange" style="width:100%" aria-label="Chapter selector for doomsday clock">
+<p id="clockText"><strong>Chapter VIII — Old Ghosts.</strong> Five minutes to midnight in the story's imagery. Hollis Mason is murdered, Rorschach is freed — the clock is ticking louder.</p>
+<p style="font-size:13px;color:var(--muted)">Drag the slider through the 12 chapters. In <em>Watchmen</em>, clocks, covers and chapter titles all creep toward midnight — the moment of nuclear dread.</p>
+</div>
+</div>
+
+<section id="basics"><h2>1 — The Basics</h2><p class="serif" style="font-size:18px;max-width:760px">Start here. No prior comics knowledge needed.</p>
+<div class="grid">
+<article class="card"><div class="fact">WHAT IS IT?</div><p><strong>A 12-issue limited series</strong> published by DC Comics, cover-dated September 1986 to October 1987, later collected as a graphic novel. It is a murder mystery, a political thriller, and a deconstruction of the superhero idea itself — asking: what would costumed heroes <em>really</em> be like?</p></article>
+<article class="card"><div class="fact">WHY IT MATTERS</div><p>Alongside <em>The Dark Knight Returns</em>, it helped prove comics could be literature. It won a <strong>Hugo Award in 1988</strong> (in the Other Forms category) — a first for a comic — and was named to <em>TIME</em>'s list of the 100 best English-language novels since 1923.</p></article>
+<article class="card"><div class="fact">THE HOOK</div><p>New York, October 1985. Edward Blake — the Comedian — is thrown from his high-rise window. Rorschach, the only vigilante still operating illegally, finds his secret identity and warns the retired heroes: <em>someone is killing masks.</em></p></article>
+<article class="card"><div class="fact">ALTERNATE HISTORY</div><p>Superheroes emerged in the late 1930s–40s. Because Dr Manhattan helped the US, <strong>America won the Vietnam War</strong>, Watergate never broke, and Richard Nixon is still president in 1985 in a fifth term. Electric cars are common. Small change, huge consequences.</p></article>
+<article class="card"><div class="fact">THE KEENE ACT (1977)</div><p>After police strikes and public backlash, Congress outlawed costumed vigilantism. Most heroes retired. Only two kept working legally — <strong>Dr Manhattan and the Comedian</strong> — as US government operatives. Rorschach simply refused to stop.</p></article>
+<article class="card"><div class="fact">HOW TO READ IT</div><p>Slowly. Every chapter (except the last) ends with <strong>supplemental prose</strong> — excerpts from Hollis Mason's memoir <em>Under the Hood</em>, files, letters and articles. Plus a comic inside the comic: <em>Tales of the Black Freighter</em>, a pirate tragedy that mirrors the main plot.</p></article>
+</div></section>
+
+<section id="craft"><h2>2 — Characteristics & Craft</h2><p style="color:var(--muted);max-width:760px">What makes <em>Watchmen</em> feel different from every other superhero comic? Five signature choices — try them.</p>
+<div class="grid">
+<article class="card"><h3>▦ The nine-panel grid</h3><p>Gibbons locks most pages into 3×3 panels. That rigid rhythm controls time like a metronome — so when the layout finally breaks (a full-page Mars vista, a splash of violence), it hits hard. Tap the panels:</p><div class="panelGrid" id="panelGrid"></div><p id="panelMsg" style="font-weight:700">9 panels = 9 beats. Click one.</p></article>
+<article class="card"><h3>◐ Fearful symmetry</h3><p>Chapter V is built as a mirror: first page mirrors last, second mirrors second-last, and so on. Covers are extreme close-ups that become the first panel of the issue. The bloodied smiley on #1 echoes drains, clocks, and inkblots everywhere.</p><p><strong>Motifs to hunt:</strong> clocks at ~5 to midnight • smiley face • Rorschach blots • Nostalgia perfume • the newsstand & the boy reading <em>Black Freighter</em>.</p></article>
+<article class="card"><h3>✒ Based on Charlton heroes</h3><p>Moore originally pitched using Charlton Comics characters DC had acquired. DC said no — so he transformed them: Captain Atom → Dr Manhattan, The Question → Rorschach, Blue Beetle → Nite Owl, Peacemaker → Comedian, Thunderbolt → Ozymandias, Nightshade → Silk Spectre.</p></article>
+</div>
+<div class="card" style="margin-top:16px"><h3>🎨 Colour as storytelling — John Higgins</h3><p style="color:var(--muted)">Higgins uses a muted, secondary palette — purples, browns, sickly yellows — against Dr Manhattan's electric blue. Flashbacks are coloured differently from 1985. Nothing is bright primary-colour heroic, on purpose: this world is tired, autumnal, and afraid.</p></div>
+</section>
+
+<section id="world"><h2>3 — Background: The World</h2>
+<div class="timeline">
+<div class="tl"><b>1938–39 — First masks.</b> Inspired by pulp heroes, real people put on costumes. Hooded Justice debuts; the Minutemen form in 1939: Hooded Justice, Captain Metropolis, Silk Spectre (Sally Jupiter), Nite Owl (Hollis Mason), the Comedian, Dollar Bill, Mothman, and Silhouette.</div>
+<div class="tl"><b>1940s–50s — The Minutemen fall apart.</b> Scandal, murder, McCarthy-era hearings. The Comedian attempts to rape Sally Jupiter — a crime that shadows two generations. Retirements follow.</div>
+<div class="tl"><b>1959 — Gila Flats accident.</b> Physicist Jon Osterman is trapped in an Intrinsic Field test chamber and disintegrated — then reassembles himself as Dr Manhattan, the first and only truly superpowered being.</div>
+<div class="tl"><b>1960s — A second generation.</b> Nite Owl II (Dan Dreiberg), Silk Spectre II (Laurie Juspeczyk), Rorschach, Ozymandias and Dr Manhattan briefly try to form the Crimebusters (1966). It collapses after one meeting — the Comedian torches the map and the idea.</div>
+<div class="tl"><b>1970s — Vietnam & backlash.</b> Dr Manhattan wins Vietnam for the US in weeks. At home, anti-vigilante riots and a police strike lead to the Keene Act (1977). Costumes are banned.</div>
+<div class="tl"><b>Oct 1985 — Our story.</b> US–Soviet tension over Afghanistan pushes the Doomsday Clock toward midnight. And someone murders the Comedian…</div>
+</div></section>
+
+<section id="characters"><h2>4 — Characters</h2><p style="color:var(--muted)">Six leads, six philosophies. No one is simply “the good guy.” Use the tabs — each micro-lesson is 30 seconds.</p>
+<div class="tabs" id="charTabs"></div>
+<div class="card" id="charCard"></div>
+<div class="charGrid" style="margin-top:16px">
+<article class="card"><h3>The Minutemen (1939)</h3><p>The first generation — more celebrity stunt than justice league. Their photo, first seen in Ch. I, keeps reappearing. Key names: <strong>Hollis Mason</strong> (Nite Owl I, author of <em>Under the Hood</em>), <strong>Sally Jupiter</strong> (Silk Spectre I, Laurie's mother and manager), <strong>Hooded Justice</strong> (the first masked hero, who vanishes in the 1950s), <strong>Captain Metropolis</strong>.</p></article>
+<article class="card"><h3>Ordinary people matter</h3><p>Moore & Gibbons keep cutting to the newsstand: Bernard the vendor philosophises while young Bernie reads <em>Tales of the Black Freighter</em>. A psychiatrist, Dr Malcolm Long, is undone by treating Rorschach. The ending's weight lands on these lives — not just the heroes'.</p></article>
+</div></section>
+
+<section id="story"><h2>5 — The Complete Story</h2>
+<div class="notice">⚠ Spoiler gate: the full ending is hidden until you tap Reveal. Read the chapters first if you want to stay unspoiled.</div>
+<div class="card" style="margin-top:14px">
+<p><strong>Act I — The murder (Ch. I–III).</strong> Rorschach investigates Blake's death and warns Dan Dreiberg, Adrian Veidt, Jon Osterman and Laurie Juspeczyk. At Blake's funeral, each mourner remembers a different Comedian: brutal, cynical, and — days before dying — weeping to ex-villain Moloch about a “joke” so terrible he couldn't bear it. Meanwhile Dr Manhattan, publicly accused of causing cancer in people close to him, exiles himself to Mars. Without him, the USSR invades Afghanistan and the world edges to war.</p>
+<p><strong>Act II — Unravelling (Ch. IV–VIII).</strong> We live Jon's non-linear life (Ch. IV), watch Rorschach framed for Moloch's murder and imprisoned (Ch. V–VI) — where his origin spills out in therapy sessions. Freed by Nite Owl and Silk Spectre after they rediscover purpose rescuing people from a fire (Ch. VII–VIII), the trio regroups — but Hollis Mason is beaten to death by Knot-Tops who mistake him for the current Nite Owl.</p>
+<p><strong>Act III — Mars & Antarctica (Ch. IX–XII).</strong> On Mars, Laurie — realising the Comedian was her father — convinces Jon that individual lives have miraculous value. He returns. In Antarctica, Dan and Rorschach confront the architect of everything:</p>
+<div class="spoiler" id="ending"><p><strong>The ending — revealed.</strong> Adrian Veidt / Ozymandias killed the Comedian, framed Rorschach, exiled Manhattan, and staged his own assassination attempt — all to execute his plan: teleport a genetically-engineered giant squid, laced with a psychic shockwave, into New York. It kills millions of people in New York — and, by inventing an “alien” threat, terrifies the US and USSR into peace. He did it “35 minutes ago” — before the heroes even arrived. Manhattan agrees the secret must hold. Rorschach refuses to compromise, even in the face of Armageddon — so Manhattan kills him. Dan and Laurie start a new life under new names. Final sting: Rorschach's journal sits in the crank file at the <em>New Frontiersman</em>. An editor tells assistant Seymour to grab something to fill space… and his hand hovers. <em>Nothing ever ends.</em></p></div>
+<button class="btn" id="revealBtn">Reveal the ending</button>
+</div></section>
+
+<section id="chapters"><h2>6 — All 12 Chapters, Micro-Lessons</h2><p style="color:var(--muted)">Tap a chapter to expand. Press “Mark learned” to grow your progress bar at the top.</p><div class="chapters" id="chapterList"></div></section>
+
+<section id="watch"><h2>7 — Watch: Video Essays</h2><p style="color:var(--muted)">Curated YouTube explainers about the <em>comic</em>. Press play — they load from YouTube.</p>
+<div class="grid" style="grid-template-columns:1fr 1fr">
+<div><iframe class="video" src="https://www.youtube.com/embed/wJmg0uc3CjY" title="Watchmen Explained (original comic) — Alt Shift X" allowfullscreen loading="lazy"></iframe><p><strong>Watchmen Explained (original comic) — Alt Shift X</strong><br><span style="color:var(--muted);font-size:14px">What happens in the 1986 comic and what Rorschach, Manhattan, Dan, Laurie and Ozymandias each represent. Chapters: World → Rorschach → Manhattan → Dan → Laurie → Ozymandias.</span><br><a href="https://www.youtube.com/watch?v=wJmg0uc3CjY" target="_blank" rel="noopener">Open on YouTube ↗</a></p></div>
+<div><iframe class="video" src="https://www.youtube.com/embed/HzH5g2X3YEg" title="WATCHMEN Explained: Why Real Superheroes Would Be Creepy" allowfullscreen loading="lazy"></iframe><p><strong>WATCHMEN Explained: Why Real Superheroes Would Be Creepy</strong><br><span style="color:var(--muted);font-size:14px">On the 2009 film and the comic behind it: the world, the Comedian's murder, Rorschach's investigation and Manhattan's mystery.</span><br><a href="https://www.youtube.com/watch?v=HzH5g2X3YEg" target="_blank" rel="noopener">Open on YouTube ↗</a></p></div>
+</div></section>
+
+<section><h2>8 — Articles & Reading Room</h2><div class="grid">
+<article class="card"><h3>Wikipedia — Watchmen</h3><p>Publication history, full issue table with dates, plot, themes and legacy. Your best factual anchor.</p><a href="https://en.wikipedia.org/wiki/Watchmen" target="_blank" rel="noopener">Read article ↗</a></article>
+<article class="card"><h3>EBSCO Research Starters</h3><p>Scholarly overview: alternate history, plot and character analysis (Rorschach, Nite Owl, Silk Spectre and more).</p><a href="https://www.ebsco.com/research-starters/literature-and-writing/watchmen" target="_blank" rel="noopener">Read article ↗</a></article>
+<article class="card"><h3>Chapters in Watchmen — Wiki guide</h3><p>Chapter-by-chapter plot summaries plus the supplemental document attached to each issue.</p><a href="https://watchmen.fandom.com/wiki/Chapters_in_Watchmen" target="_blank" rel="noopener">Read article ↗</a></article>
+<article class="card"><h3>The A.V. Club — Watchmen #1–3</h3><p>Critical reading of the opening arc: nine-panel grid, Doomsday Clock, and the Keene Act world-building.</p><a href="https://avclub.com/watchmen-1-3-and-before-watchmen-minutemen-silk-spect-1798240334" target="_blank" rel="noopener">Read article ↗</a></article>
+<article class="card"><h3>Looper — Entire Story Explained</h3><p>Long-form explainer of the whole comic story, character archetypes, and Ozymandias' plot.</p><a href="https://www.looper.com/192330/the-entire-story-of-watchmen-in-the-comics-explained/" target="_blank" rel="noopener">Read article ↗</a></article>
+<article class="card"><h3>Reading Watchmen — Annotations Ch. I</h3><p>Panel-by-panel annotations: clocks, graphic matches, and details you'd miss on a first read.</p><a href="http://www.readingwatchmen.com/2012/01/chapter-i-complete-annotations.html?showComment=1458099183859" target="_blank" rel="noopener">Read article ↗</a></article>
+</div></section>
+
+<section id="play"><h2>9 — Play: Activities & Quiz</h2>
+<div class="charGrid">
+<div class="card"><h3>🩸 Activity 1 — The Inkblot</h3><p>Rorschach sees meaning in shifting blots. What do you see first?</p><div class="ink"><svg viewBox="0 0 200 120"><path d="M100 10 C70 20 85 40 60 45 C30 50 40 80 65 78 C85 76 88 100 100 110 C112 100 115 76 135 78 C160 80 170 50 140 45 C115 40 130 20 100 10Z" fill="#111"/><circle cx="78" cy="52" r="6" fill="#fff"/><circle cx="122" cy="52" r="6" fill="#fff"/></svg></div><div class="matchRow" style="margin-top:12px"><button class="chip inkOpt">A butterfly</button><button class="chip inkOpt">Two faces arguing</button><button class="chip inkOpt">A city at midnight</button><button class="chip inkOpt">Just an inkblot</button></div><p id="inkResult" style="font-weight:700"></p></div>
+<div class="card"><h3>🦉 Activity 2 — Match the Mask</h3><p>Tap a codename, then tap its real name. 4 pairs.</p><div id="matchGame"></div><p id="matchScore" style="font-weight:800"></p></div>
+</div>
+<div class="card" style="margin-top:16px"><h3 style="font-size:24px">🏆 The Midnight Quiz — 6 questions</h3><div id="quiz"></div><p id="quizScore" style="font-size:18px;font-weight:800"></p><button class="btn secondary" onclick="buildQuiz()">↻ Restart quiz</button></div>
+</section>
+
+<section><h2>Think About It</h2><div class="grid">
+<article class="card"><h3>“Who watches the Watchmen?”</h3><p>The Latin tag <em>Quis custodiet ipsos custodes?</em> (Juvenal) appears as half-finished graffiti throughout. It's the book's central question: who holds the powerful accountable?</p></article>
+<article class="card"><h3>Ends vs means</h3><p>Veidt saves the world by murdering millions. Rorschach would let the world burn rather than lie. Manhattan could intervene — and mostly doesn't. Moore gives you no hero to hide behind; you have to judge.</p></article>
+<article class="card"><h3>Time</h3><p>Manhattan experiences past, present and future at once: “We're all puppets… I'm just a puppet who can see the strings.” Is Watchmen a story about fate, or about people using fate as an excuse?</p></article>
+</div></section>
+</main>
+<footer><div class="wrap"><h2 style="font-size:28px">Sources & Accuracy</h2><ul class="sources" id="sources">
+<li>Publication data, issue titles & dates, Charlton origins, Keene Act and plot facts cross-checked against <a href="https://en.wikipedia.org/wiki/Watchmen" target="_blank" rel="noopener">Wikipedia — Watchmen</a> and <a href="https://www.ebsco.com/research-starters/literature-and-writing/watchmen" target="_blank" rel="noopener">EBSCO Research Starters — Watchmen</a>.</li>
+<li>Chapter summaries & supplemental documents: <a href="https://watchmen.fandom.com/wiki/Chapters_in_Watchmen" target="_blank" rel="noopener">Chapters in Watchmen (Watchmen Wiki)</a>.</li>
+<li>Craft analysis (nine-panel grid, Doomsday Clock, covers as first panel): <a href="https://avclub.com/watchmen-1-3-and-before-watchmen-minutemen-silk-spect-1798240334" target="_blank" rel="noopener">A.V. Club</a> and <a href="http://www.readingwatchmen.com/2012/01/chapter-i-complete-annotations.html?showComment=1458099183859" target="_blank" rel="noopener">Reading Watchmen annotations</a>.</li>
+<li>Character archetypes & story explainer: <a href="https://www.looper.com/192330/the-entire-story-of-watchmen-in-the-comics-explained/" target="_blank" rel="noopener">Looper — The Entire Story of Watchmen Explained</a>.</li>
+<li>Videos embedded from YouTube: Alt Shift X and the Watchmen Explained essay linked in §7. Watchmen © DC Comics; this is an unofficial study guide for learning.</li>
+</ul><p>Finished all 12 micro-lessons and the quiz? You now know Watchmen better than most movie-only fans. <em>Nothing ever ends — re-read Chapter V and watch the symmetry click.</em></p><p style="text-align:center;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700">Designed by MyourAI-DrK</p></div></footer>
+
+<script>
+var chapters=[
+["At Midnight, All the Agents...","Sep 1986 • From Bob Dylan's 'Desolation Row'","Edward Blake is murdered. Rorschach finds the Comedian's costume hidden in his apartment and begins warning the old team. Attached text: Under the Hood, Ch. I–II — Hollis Mason on becoming Nite Owl.","Look for: the bloodied smiley — the cover is the first panel."],
+["Absent Friends","Oct 1986","Blake's funeral. Dan, Jon, Adrian and Sally each flash back to a different Comedian. Rorschach interrogates Moloch, who reveals Blake's terrified breakdown. Attached: Under the Hood, Ch. III–IV — forming the Minutemen.","Theme: memory lies — everyone buries a different man."],
+["The Judge of All the Earth","Nov 1986 • Title from Genesis 18:25","The newsstand and Tales of the Black Freighter begin. Manhattan, ambushed by press over cancer claims, exiles himself to Mars. Laurie leaves Jon and visits Dan. Attached: Under the Hood, Ch. V.","Turning point: without Manhattan, deterrence collapses."],
+["Watchmaker","Dec 1986","Jon Osterman's life told all at once — watchmaker's son, Princeton, Gila Flats 1959, rebirth as Dr Manhattan, Vietnam. Moore & Gibbons mimic his timeless perception in the structure itself.","Form = content: you read time the way Jon sees it."],
+["Fearful Symmetry","Jan 1987 • From Blake's 'The Tyger'","Rorschach is set up and arrested at Moloch's apartment after Moloch is murdered. Dan and Laurie grow closer. The whole issue is visually symmetrical — first and last pages mirror.","Try it: flip first/last spreads side by side."],
+["The Abyss Gazes Also","Feb 1987 • Nietzsche","In prison, Rorschach tells Dr Malcolm Long his origin: the Kitty Genovese case, the Blair Roche kidnapping, the moment the mask became his 'face.' Long's own optimism cracks.","The darkest chapter — and the key to Rorschach."],
+["A Brother to Dragons","Mar 1987","Dan and Laurie, frustrated and nostalgic, suit up in Archie (the Owlship) to rescue people from a tenement fire — and feel alive again. Attached: Dan's article 'Blood from the Shoulder of Pallas.'","Question: is heroism addiction, altruism, or both?"],
+["Old Ghosts","Apr 1987","Halloween. Dan & Laurie break Rorschach out of prison. Hollis Mason, mistaken for Nite Owl, is murdered by Knot-Tops. Attached: New Frontiersman article.","Cost of the mask falls on the innocent — again."],
+["The Darkness of Mere Being","May 1987","On Mars, Laurie argues for humanity and discovers Blake was her father. Jon decides Earth life — each life a thermodynamic miracle — is worth saving.","Laurie's revelation shatters Jon's glass palace — literally."],
+["Two Riders Were Approaching...","Jun–Jul 1987 • Dylan, 'All Along the Watchtower'","Dan & Rorschach follow the money to Veidt. Nixon readies nuclear options. Rorschach mails his journal to the New Frontiersman — just in case.","That journal is the book's ticking bomb."],
+["Look on My Works, Ye Mighty...","Aug 1987 • Shelley's 'Ozymandias'","Karnak, Antarctica. Veidt explains everything — and reveals he triggered his plan 35 minutes before the heroes arrived. The squid is already en route.","'I did it thirty-five minutes ago.' Comics' coldest twist."],
+["A Stronger Loving World","Oct 1987","New York devastated, peace declared, Rorschach dead by his own demand, Jon leaves the galaxy to 'create some' life. Dan & Laurie visit Sally. Seymour reaches for a story in the crank file...","No supplement this time. The silence is the point."]
+];
+var chars=[
+["Rorschach","Walter Kovacs","The Absolutist","Based on Charlton's The Question. Never compromised — not in prison, not at the end of the world. His mask's shifting symmetrical inkblots are his real 'face.' Traumatised by the Roche case, he sees the world in black and white — and forces everyone else to choose too.","Watch for: his journal narration opens the book: 'Dog carcass in alley this morning...'"],
+["Dr Manhattan","Jon Osterman","The God Who Drifts Away","Based on Captain Atom. The only true superhuman: controls matter, teleports, perceives all time at once. The US used him to win Vietnam and deter the USSR — but omniscience made him care less, not more.","Watch for: the hydrogen atom symbol he burns into his forehead — he chose it because he respects it."],
+["Nite Owl II","Dan Dreiberg","The Nostalgic","Based on Blue Beetle (Ted Kord). Inherited Hollis Mason's mantle and his own family's fortune; built Archie the Owlship. Kind, impotent (literally, out of costume) and happiest when needed.","Watch for: Ch. VII — the fire rescue reawakens Dan and Laurie."],
+["Silk Spectre II","Laurie Juspeczyk","The Heart","Daughter of Sally Jupiter, pushed into the costume she never chose. Leaves Jon, chooses Dan, and on Mars makes the argument that saves the world — ordinary lives matter. Later learns the Comedian was her father.","Watch for: she, not the god, is the book's emotional climax."],
+["Ozymandias","Adrian Veidt","The Smartest Man","Based on Peter Cannon, Thunderbolt. Modelled himself on Alexander the Great and Ramesses II. Retired early, built an empire, then decided only he could save the world — at any price. Can catch a bullet; cannot catch doubt until the very end: 'I did the right thing, didn't I?'","Watch for: Bubastis, his genetically-engineered lynx."],
+["The Comedian","Edward Blake","The Joke","Based on Peacemaker. Government black-ops operative who 'saw society's true face and chose to be its parody.' Murdered Kennedy-era secrets, Vietnam atrocities — yet he's the one who breaks down when he uncovers Veidt's island. His murder starts everything.","Watch for: the smiley button — his badge, stained with his own blood."]
+];
+var done={};function updProg(){var n=Object.keys(done).length;document.getElementById('progBar').style.width=(n/12*100)+'%';document.getElementById('progLabel').textContent=n+' / 12 chapters';}
+var cl=document.getElementById('chapterList');
+chapters.forEach(function(c,i){var d=document.createElement('div');d.className='chapter';d.innerHTML='<button class="head"><span class="num">'+(i+1)+'</span><span><strong>Ch. '+(i+1)+' — '+c[0]+'</strong><br><small style="color:var(--muted)">'+c[1]+'</small></span></button><div class="body"><p>'+c[2]+'</p><p><strong style="color:var(--text)">'+c[3]+'</strong></p><button class="btn secondary markBtn">Mark learned ✓</button></div>';d.querySelector('.head').onclick=function(){d.classList.toggle('open')};d.querySelector('.markBtn').onclick=function(e){done[i]=true;e.target.textContent='Learned ✓';updProg()};cl.appendChild(d);});
+// clock
+var clockTexts=chapters.map(function(c,i){return "<strong>Chapter "+(i+1)+" — "+c[0]+".</strong> "+c[2].split('.')[0]+".";});
+document.getElementById('clockRange').addEventListener('input',function(e){var v=+e.target.value;document.getElementById('minHand').style.transform='rotate('+(300+v*5)+'deg)';document.getElementById('hourHand').style.transform='rotate('+(330+v*2)+'deg)';document.getElementById('clockText').innerHTML=clockTexts[v];});
+document.getElementById('minHand').style.transform='rotate(335deg)';document.getElementById('hourHand').style.transform='rotate(344deg)';
+// panels
+var pg=document.getElementById('panelGrid');for(var p=0;p<9;p++){(function(n){var b=document.createElement('button');b.className='panel';b.textContent=['🙂','🕐','🦉','🔵','🎭','📰','🚬','☢','🩸'][n];b.onclick=function(){document.getElementById('panelMsg').textContent='Beat '+(n+1)+' of 9 — Gibbons holds this rhythm for pages, then breaks it only when it matters.'};pg.appendChild(b)})(p)}
+// characters tabs
+var tabs=document.getElementById('charTabs');function showChar(idx){var c=chars[idx];document.getElementById('charCard').innerHTML='<div class="tag">'+c[2]+'</div><h3 style="font-size:28px">'+c[0]+' <span style="color:var(--muted);font-size:18px">— '+c[1]+'</span></h3><p>'+c[3]+'</p><p style="font-weight:700">'+c[4]+'</p>';Array.prototype.forEach.call(tabs.children,function(t,i){t.classList.toggle('active',i===idx)});}
+chars.forEach(function(c,i){var b=document.createElement('button');b.className='tab';b.textContent=c[0];b.onclick=function(){showChar(i)};tabs.appendChild(b)});showChar(0);
+// spoiler
+document.getElementById('revealBtn').onclick=function(){document.getElementById('ending').classList.add('revealed');this.style.display='none';};
+// ink
+document.querySelectorAll('.inkOpt').forEach(function(b){b.onclick=function(){document.getElementById('inkResult').textContent='Rorschach would say: there is no wrong answer — only what you brought to the blot. He saw a dog with its head split open. You saw: '+b.textContent+'. That gap is the whole character.'}});
+// match game
+var pairs=[['Rorschach','Walter Kovacs'],['Nite Owl II','Dan Dreiberg'],['Ozymandias','Adrian Veidt'],['Silk Spectre II','Laurie Juspeczyk']];var sel=null,matched=0;var mg=document.getElementById('matchGame');
+function renderMatch(){mg.innerHTML='';var left=pairs.map(function(p){return p[0]}),right=pairs.map(function(p){return p[1]}).slice().reverse();var row1=document.createElement('div');row1.className='matchRow';left.forEach(function(x){var b=document.createElement('button');b.className='chip';b.textContent=x;b.onclick=function(){sel=x;renderSel()};b.dataset.k=x;row1.appendChild(b)});var row2=document.createElement('div');row2.className='matchRow';row2.style.marginTop='10px';right.forEach(function(x){var b=document.createElement('button');b.className='chip';b.textContent=x;b.onclick=function(){if(!sel)return;var ok=pairs.some(function(p){return p[0]===sel&&p[1]===x});if(ok){matched++;document.getElementById('matchScore').textContent='Matched '+matched+' / 4'+(matched===4?' — Perfect. Never compromise!':'');Array.prototype.forEach.call(mg.querySelectorAll('.chip'),function(ch){if(ch.textContent===sel||ch.textContent===x)ch.classList.add('done')});sel=null;}else{document.getElementById('matchScore').textContent='Not that mask — try again.'}};row2.appendChild(b)});mg.appendChild(row1);mg.appendChild(row2);}
+function renderSel(){Array.prototype.forEach.call(mg.querySelectorAll('.chip'),function(ch){ch.classList.toggle('sel',ch.dataset.k===sel)})} renderMatch();
+// quiz
+var qs=[
+["Who wrote Watchmen and who drew it?",["Stan Lee & Jack Kirby","Alan Moore & Dave Gibbons","Frank Miller & Klaus Janson","Neil Gaiman & Dave McKean"],1],
+["What did the Keene Act (1977) do?",["Created the Minutemen","Banned costumed vigilantism","Made Dr Manhattan president","Outlawed comics"],1],
+["Dr Manhattan was based on which Charlton hero?",["The Question","Blue Beetle","Captain Atom","Peacemaker"],2],
+["What is Tales of the Black Freighter?",["Veidt's yacht","A pirate comic read inside Watchmen","Rorschach's journal title","The Owlship's codename"],1],
+["Chapter V, 'Fearful Symmetry', is famous because…",["It has no dialogue","Its pages mirror each other symmetrically","It is drawn upside down","Manhattan narrates it"],1],
+["How does Veidt claim he will save the world?",["Time travel","A fake alien squid attack uniting US & USSR","Killing Dr Manhattan","Becoming world president"],1]
+];var score=0,answered=0;
+function buildQuiz(){score=0;answered=0;document.getElementById('quizScore').textContent='';var qz=document.getElementById('quiz');qz.innerHTML='';qs.forEach(function(q,qi){var div=document.createElement('div');div.className='quizQ';div.innerHTML='<strong>'+(qi+1)+'. '+q[0]+'</strong>';q[1].forEach(function(opt,oi){var b=document.createElement('button');b.className='opt';b.textContent=opt;b.onclick=function(){if(b.disabled)return;Array.prototype.forEach.call(div.querySelectorAll('.opt'),function(x){x.disabled=true});if(oi===q[2]){b.classList.add('correct');score++;}else{b.classList.add('wrong');div.querySelectorAll('.opt')[q[2]].classList.add('correct');}answered++;document.getElementById('quizScore').textContent='Score: '+score+' / '+qs.length+(answered===qs.length?(score===qs.length?' — Flawless. Adrian Veidt is nervous.':score>=4?' — Strong work, Watcher.':' — Re-read Ch. I–IV and try again. The clock resets.'):'');};div.appendChild(b)});qz.appendChild(div);});}
+buildQuiz();
+</script>
+</body></html>
