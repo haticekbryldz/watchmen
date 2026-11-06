@@ -4,6 +4,8 @@ An interactive, sourced micro-learning tool for *Watchmen* by Alan Moore, Dave G
 
 **Live site:** https://haticekbryldz.github.io/watchmen/
 
+**Languages:** English (default) and Türkçe — use the EN / TR toggle in the site header to switch the full site, including lessons, chapters, quiz, and games.
+
 ## What's inside
 
 - **The Basics** — what Watchmen is, its creators, and why it matters
